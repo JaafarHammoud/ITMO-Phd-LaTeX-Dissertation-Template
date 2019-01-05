@@ -49,13 +49,18 @@
 %%% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
 \include{Dissertation/title}           % Титульный лист
 
+% Реферат на русском языке
 \setcounter{page}{2}  % TODO С какого номера страницы правильно начать?
 \renewcommand{\thepage}{I-\arabic{page}}
 
 \include{Synopsis/content}
 
+
+% Основной текст диссертации
 \setcounter{page}{1}
 \renewcommand{\thepage}{\arabic{page}}
+
+%\setcounter{usefootcite}{0}
 
 % Чтобы оглавление основной части диссертации начиналось с чётной ("левой") страницы
 \ifoddpage
@@ -66,7 +71,6 @@
     \null
     \newpage
 \fi
-
 \include{Dissertation/contents}        % Оглавление
 \include{Dissertation/introduction}    % Введение
 \include{Dissertation/part1}           % Глава 1
