@@ -299,58 +299,58 @@ sorting=none,% настройка сортировки списка литера
 
 
 
-\newtotcounter{citeauthorENvakEN}
+\newtotcounter{citeauthorvakEN}
 \makeatletter
 \defbibenvironment{countauthorvak} %Env of bibliography
-{\setcounter{citeauthorENvakEN}{0}%
+{\setcounter{citeauthorvakEN}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENvakEN в нашей реализации
-{\stepcounter{citeauthorENvakEN}} %What is printing / executed at each entry.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorvakEN в нашей реализации
+{\stepcounter{citeauthorvakEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{countauthorvak}{}
 
-\newtotcounter{citeauthorENnotvakEN}
+\newtotcounter{citeauthornotvakEN}
 \makeatletter
 \defbibenvironment{countauthornotvak} %Env of bibliography
-{\setcounter{citeauthorENnotvakEN}{0}%
+{\setcounter{citeauthornotvakEN}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENnotvakEN в нашей реализации
-{\stepcounter{citeauthorENnotvakEN}} %What is printing / executed at each entry.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthornotvakEN в нашей реализации
+{\stepcounter{citeauthornotvakEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{countauthornotvak}{}
 
-\newtotcounter{citeauthorENscopusEN}
+\newtotcounter{citeauthorscopusEN}
 \makeatletter
 \defbibenvironment{countauthorscopus} %Env of bibliography
-{\setcounter{citeauthorENscopusEN}{0}%
+{\setcounter{citeauthorscopusEN}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
-{\stepcounter{citeauthorENscopusEN}} %What is printing / executed at each entry.
+{\stepcounter{citeauthorscopusEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{countauthorscopus}{}
 
-\newtotcounter{citeauthorENpatentEN}
+\newtotcounter{citeauthorpatentEN}
 \makeatletter
 \defbibenvironment{countauthorpatent} %Env of bibliography
-{\setcounter{citeauthorENpatentEN}{0}%
+{\setcounter{citeauthorpatentEN}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
-{\stepcounter{citeauthorENpatentEN}} %What is printing / executed at each entry.
+{\stepcounter{citeauthorpatentEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{countauthorpatent}{}
 
-\newtotcounter{citeauthorENprogramsEN}
+\newtotcounter{citeauthorprogramsEN}
 \makeatletter
 \defbibenvironment{countauthorprograms} %Env of bibliography
-{\setcounter{citeauthorENprogramsEN}{0}%
+{\setcounter{citeauthorprogramsEN}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
-{\stepcounter{citeauthorENprogramsEN}} %What is printing / executed at each entry.
+{\stepcounter{citeauthorprogramsEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{countauthorprograms}{}
 
@@ -395,6 +395,6 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbibliootherEN}{
-\printbibliography[heading=otherpublications,keyword=biblioother]
+\printbibliography[heading=otherpublicationsEN,keyword=biblioother]
 }
 
