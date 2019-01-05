@@ -1,0 +1,88 @@
+%%% Основные сведения %%%
+\newcommand{\thesisAuthorLastNameEN}{\todo{Secondname}}
+\newcommand{\thesisAuthorOtherNamesEN}{\todo{Firstname Patronymic}}
+\newcommand{\thesisAuthorInitialsEN}{\todo{F.\,P.}}
+\newcommand{\thesisAuthorEN}             % Диссертация, ФИО автора
+{%
+    \texorpdfstring{% \texorpdfstring takes two arguments and uses the first for (La)TeX and the second for pdf
+        \thesisAuthorLastNameEN~\thesisAuthorOtherNamesEN% так будет отображаться на титульном листе или в тексте, где будет использоваться переменная
+    }{%
+        \thesisAuthorLastNameEN, \thesisAuthorOtherNamesEN% эта запись для свойств pdf-файла. В таком виде, если pdf будет обработан программами для сбора библиографических сведений, будет правильно представлена фамилия.
+    }
+}
+\newcommand{\thesisAuthorShortEN}        % Диссертация, ФИО автора с инициалами
+{\thesisAuthorInitialsEN~\thesisAuthorLastNameEN}
+\newcommand{\thesisTitleEN}              % Диссертация, название
+{\todo{Thesis title}}
+
+
+
+
+
+
+\newcommand{\thesisSpecialtyNumberEN}    % Диссертация, специальность, номер
+{\thesisSpecialtyNumber}
+\newcommand{\thesisSpecialtyTitleEN}     % Диссертация, специальность, название
+{\todo{Speciality title}}
+\newcommand{\thesisDegreeEN}             % Диссертация, ученая степень
+{Doctor of Philosophy}
+%\newcommand{\thesisDegreeShort}        % Диссертация, ученая степень, краткая запись
+%{\todo{канд. физ.-мат. наук}}
+\newcommand{\thesisCityEN}               % Диссертация, город написания диссертации
+{Saint Petersburg}
+\newcommand{\thesisYearEN}               % Диссертация, год написания диссертации
+{\thesisYear}
+\newcommand{\thesisOrganizationEN}       % Диссертация, организация
+{Saint Petersburg National Research University of Information Technologies, Mechanics and Optics}
+\newcommand{\thesisOrganizationShortEN}  % Диссертация, краткое название организации для доклада
+{ITMO University}
+
+\newcommand{\thesisInOrganizationEN}     % Диссертация, организация в предложном падеже: Работа выполнена в ...
+{\thesisOrganizationEN}
+
+\newcommand{\supervisorFioEN}            % Научный руководитель, ФИО
+{\todo{Secondname Firstname Patronymic}}
+\newcommand{\supervisorRegaliaEN}        % Научный руководитель, регалии
+{\todo{Scientific Degree, Title}}
+\newcommand{\supervisorFioShortEN}       % Научный руководитель, ФИО
+{\todo{F.\,P.~Secondname}}
+\newcommand{\supervisorRegaliaShortEN}   % Научный руководитель, регалии
+{\todo{Sc. Deg.}}
+
+
+
+
+
+
+
+
+\newcommand{\opponentOneFioEN}           % Оппонент 1, ФИО
+{\todo{Secondname Firstname Patronymic}}
+\newcommand{\opponentOneRegaliaEN}       % Оппонент 1, регалии
+{\todo{Scientific Degree, Title}}
+\newcommand{\opponentOneJobPlaceEN}      % Оппонент 1, место работы
+{\todo{Job Place}}
+\newcommand{\opponentOneJobPostEN}       % Оппонент 1, должность
+{\todo{Position}}
+
+\newcommand{\opponentTwoFioEN}           % Оппонент 2, ФИО
+{\todo{Secondname Firstname Patronymic}}
+\newcommand{\opponentTwoRegaliaEN}       % Оппонент 2, регалии
+{\todo{Scientific Degree, Title}}
+\newcommand{\opponentTwoJobPlaceEN}      % Оппонент 2, место работы
+{\todo{Job Place}}
+\newcommand{\opponentTwoJobPostEN}       % Оппонент 2, должность
+{\todo{Position}}
+
+
+\newcommand{\defenseDateEN}              % Защита, дата
+{\todo{DD mmmmmmmm YYYY~year~at~XX PM/AM}}
+\newcommand{\defenseCouncilNumberEN}     % Защита, номер диссертационного совета
+{\defenseCouncilNumber}
+\newcommand{\defenseCouncilAddressEN}    % Защита, адрес учреждение диссертационного совета
+{\todo{Address, room}}
+
+\newcommand{\defenseSecretaryFioEN}      % Секретарь диссертационного совета, ФИО
+{\todo{Secondname Firstname Patronymic}}
+\newcommand{\defenseSecretaryRegaliaEN}  % Секретарь диссертационного совета, регалии
+{\todo{Scientific Degree}}            % Для сокращений есть ГОСТы, например: ГОСТ Р 7.0.12-2011 + http://base.garant.ru/179724/#block_30000
