@@ -15,6 +15,7 @@
 %\input{Synopsis/setup}        % Упрощённые настройки шаблона 
 
 \input{common/newnames}         % Новые переменные, для всего проекта
+\input{common/newnames_en}         % Новые переменные, для всего проекта
 
 \input{common/data}             % Основные сведения
 \input{common/data_en}          % Основные сведения, на английском языке
@@ -57,6 +58,11 @@
 
 \include{Synopsis/content}
 
+% Реферат на английском языке
+\setcounter{page}{2}  % TODO С какого номера страницы правильно начать?
+\renewcommand{\thepage}{II-\arabic{page}}
+
+\include{Synopsis/content_en}
 
 % Основной текст диссертации
 \setcounter{page}{1}
