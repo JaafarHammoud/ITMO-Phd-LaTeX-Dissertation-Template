@@ -62,12 +62,17 @@
 \newcommand{\tasks}{\underline{\textbf{\tasksTXT}}}
 \newcommand{\novelty}{\underline{\textbf{\noveltyTXT}}}
 \newcommand{\influence}{\underline{\textbf{\influenceTXT}}}
+\newcommand{\influenceTheor}{\underline{\textbf{\influenceTheorTXT}}}
 \newcommand{\methods}{\underline{\textbf{\methodsTXT}}}
 \newcommand{\defpositions}{\underline{\textbf{\defpositionsTXT}}}
 \newcommand{\reliability}{\underline{\textbf{\reliabilityTXT}}}
 \newcommand{\probation}{\underline{\textbf{\probationTXT}}}
 \newcommand{\contribution}{\underline{\textbf{\contributionTXT}}}
 \newcommand{\publications}{\underline{\textbf{\publicationsTXT}}}
+\newcommand{\researchObject}{\underline{\textbf{\researchObjectTXT}}}
+\newcommand{\researchSubject}{\underline{\textbf{\researchSubjectTXT}}}
+\newcommand{\deployment}{\underline{\textbf{\deploymentTXT}}}
+\newcommand{\thesisstructure}{\underline{\textbf{\thesisstructureTXT}}}
 
 \input{common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
 
@@ -113,7 +118,7 @@
 счётчику \verb!\setcounter{usefootcite}{1}!. В таком случае ссылки на
 работы других авторов будут подстрочными.
 \ifnumgreater{\value{usefootcite}}{0}{
-Изложенные в третьей главе результаты опубликованы в~\cite{vakbib1, vakbib2}.
+Изложенные в третьей главе результаты опубликованы в~\cite{authorpapervak_1, authorpaperscopus_1}.
 }{}
 Использование подстрочных ссылок внутри таблиц может вызывать проблемы.
 
@@ -130,14 +135,14 @@
 \ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
   \renewcommand{\bibname}{\large \authorbibtitle}
   \nocite{*}
-  \insertbiblioauthor           % Подключаем Bib-базы
+  \insertbiblioauthorgrouped           % Подключаем Bib-базы
   %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
   \ifnumgreater{\value{usefootcite}}{0}{
 %  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
   \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
   }{
-  \insertbiblioauthor           % Вывод всех работ автора
+  \insertbiblioauthorgrouped           % Вывод всех работ автора
 %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
 %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
   \insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата

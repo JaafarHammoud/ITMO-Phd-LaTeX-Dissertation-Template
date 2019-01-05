@@ -11,8 +11,6 @@
     \fi
 \fi
 
-\newif\ifsynopsis           % Условие, проверяющее, что документ --- автореферат
-
 \RequirePackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
 
 %%% Поля и разметка страницы %%%
@@ -123,7 +121,3 @@
     \SetWatermarkScale{15}
     \SetWatermarkAngle{45}
 }{}
-
-%%% Цитата, не приводимая в автореферате:
-% возможно, актуальна только для biblatex
-%\newcommand{\citeinsynopsis}[1]{\ifsynopsis\else ~\cite{#1} \fi}
