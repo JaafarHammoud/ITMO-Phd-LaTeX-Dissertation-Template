@@ -431,13 +431,7 @@ sorting=none,% настройка сортировки списка литера
 
 
 
-
-
-
-
-
-
-
+% ======== Аналогичные макросы для англоязычного списка литературы ========
 
 %% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
 %http://tex.stackexchange.com/a/66851/79756
@@ -452,15 +446,6 @@ sorting=none,% настройка сортировки списка литера
 {\stepcounter{citenumEN}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{counterEN}{}
-
-
-
-
-
-
-
-
-
 
 
 \newtotcounter{citeauthorvakEN}
@@ -530,19 +515,9 @@ sorting=none,% настройка сортировки списка литера
 \defbibheading{countauthorEN}{}
 
 
-
-
-
-
-
-
 \defbibheading{authorpublicationsEN}[\authorbibtitleEN]{\section*{#1}}
 \defbibheading{pubsubgroupEN}{\noindent\textbf{#1}}
 \defbibheading{otherpublicationsEN}{\section*{#1}}
-
-
-
-
 
 
 %%% Создание команд для вывода списка литературы %%%
@@ -562,9 +537,6 @@ sorting=none,% настройка сортировки списка литера
 }
 
 
-
-
-
 \newcommand*{\insertbiblioauthorgroupedEN}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
     \section*{\authorbibtitleEN}
     \printbibliography[heading=pubsubgroupEN, keyword=biblioauthorscopusEN, section=3,title=\scopusbibtitleEN]%
@@ -575,9 +547,6 @@ sorting=none,% настройка сортировки списка литера
 }
 
 
-
-
 \newcommand*{\insertbibliootherEN}{
     \printbibliography[heading=otherpublicationsEN,keyword=bibliootherEN]
 }
-
