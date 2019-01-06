@@ -16,9 +16,10 @@ defernumbers=true,% нумерация проставляется после д�
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
 doi=false,% Показывать или нет ссылки на DOI
 isbn=false,% Показывать или нет ISBN, ISSN, ISRN
+movenames=false,
 ]{biblatex}[2016/09/17]
 \ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
-{\toggletrue{bbx:gostbibliography}%
+{%\toggletrue{bbx:gostbibliography}%
 \renewcommand*{\revsdnamepunct}{\addcomma}}{}
 }{%Черновик
 \usepackage[%
@@ -57,7 +58,15 @@ sorting=none,% настройка сортировки списка литера
 \addbibresource[label=other]{biblio/othercites.bib}
 \addbibresource[label=vak]{biblio/authorpapersVAK.bib}
 \addbibresource[label=papers]{biblio/authorpapers.bib}
-\addbibresource[label=conf]{biblio/authorconferences.bib}
+\addbibresource[label=scopus]{biblio/authorScopus.bib}
+\addbibresource[label=patent]{biblio/authorPatent.bib}
+\addbibresource[label=programs]{biblio/authorPrograms.bib}
+% Английские
+\addbibresource[label=vakEN]{biblio/authorpapersVAK_en.bib}
+\addbibresource[label=papersEN]{biblio/authorpapers_en.bib}
+\addbibresource[label=scopusEN]{biblio/authorScopus_en.bib}
+\addbibresource[label=patentEN]{biblio/authorPatent_en.bib}
+\addbibresource[label=programsEN]{biblio/authorPrograms_en.bib}
 
 
 %http://tex.stackexchange.com/a/141831/79756
@@ -80,7 +89,14 @@ sorting=none,% настройка сортировки списка литера
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
             \perdatasource{biblio/authorpapersVAK.bib}
             \perdatasource{biblio/authorpapers.bib}
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{biblio/authorScopus.bib}
+            \perdatasource{biblio/authorPatent.bib}
+            \perdatasource{biblio/authorPrograms.bib}
+            \perdatasource{biblio/authorpapersVAK_en.bib}
+            \perdatasource{biblio/authorpapers_en.bib}
+            \perdatasource{biblio/authorScopus_en.bib}
+            \perdatasource{biblio/authorPatent_en.bib}
+            \perdatasource{biblio/authorPrograms_en.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
@@ -120,8 +136,36 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=keywords, fieldvalue={biblioauthornotvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorconferences.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
+            \perdatasource{biblio/authorScopus.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorPatent.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorpatent,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorPrograms.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorprograms,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorpapersVAK_en.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorvakEN,biblioauthorEN}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorpapers_en.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthornotvakEN,biblioauthorEN}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorScopus_en.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorscopusEN,biblioauthorEN}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorPatent_en.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorpatentEN,biblioauthorEN}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorPrograms_en.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorprogramsEN,biblioauthorEN}]
         }
 %        \map[overwrite]{% стираем значения всех полей series
 %            \step[fieldset=series, null]
@@ -308,16 +352,38 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 \defbibheading{countauthornotvak}{}
 
-\newtotcounter{citeauthorconf}
+\newtotcounter{citeauthorscopus}
 \makeatletter
-\defbibenvironment{countauthorconf} %Env of bibliography
-{\setcounter{citeauthorconf}{0}%
+\defbibenvironment{countauthorscopus} %Env of bibliography
+{\setcounter{citeauthorscopus}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
-{\stepcounter{citeauthorconf}} %What is printing / executed at each entry.
+{\stepcounter{citeauthorscopus}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorconf}{}
+\defbibheading{countauthorscopus}{}
+
+\newtotcounter{citeauthorpatent}
+\makeatletter
+\defbibenvironment{countauthorpatent} %Env of bibliography
+{\setcounter{citeauthorpatent}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
+{\stepcounter{citeauthorpatent}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorpatent}{}
+
+\newtotcounter{citeauthorprograms}
+\makeatletter
+\defbibenvironment{countauthorprograms} %Env of bibliography
+{\setcounter{citeauthorprograms}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
+{\stepcounter{citeauthorprograms}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorprograms}{}
 
 \newtotcounter{citeauthor}
 \makeatletter
@@ -352,12 +418,135 @@ sorting=none,% настройка сортировки списка литера
 }
 \newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
 \section*{\authorbibtitle}
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1,title=\scopusbibtitle]%
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1,title=\vakbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1,title=\confbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorpatent, section=1,title=\patentbibtitle]%
 \printbibliography[heading=pubsubgroup, keyword=biblioauthornotvak, section=1,title=\notvakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorprograms, section=1,title=\programsbibtitle]%
 }
 
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]
 }
 
+
+
+% ======== Аналогичные макросы для англоязычного списка литературы ========
+
+%% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
+%http://tex.stackexchange.com/a/66851/79756
+%\newcounter{citenumEN}
+\newtotcounter{citenumEN}
+\makeatletter
+\defbibenvironment{counterEN} %Env of bibliography
+{\setcounter{citenumEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. \thecitenumEN сюда писать не надо
+{\stepcounter{citenumEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{counterEN}{}
+
+
+\newtotcounter{citeauthorvakEN}
+\makeatletter
+\defbibenvironment{countauthorvakEN} %Env of bibliography
+{\setcounter{citeauthorvakEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorvakEN в нашей реализации
+{\stepcounter{citeauthorvakEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorvakEN}{}
+
+\newtotcounter{citeauthornotvakEN}
+\makeatletter
+\defbibenvironment{countauthornotvakEN} %Env of bibliography
+{\setcounter{citeauthornotvakEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthornotvakEN в нашей реализации
+{\stepcounter{citeauthornotvakEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthornotvakEN}{}
+
+\newtotcounter{citeauthorscopusEN}
+\makeatletter
+\defbibenvironment{countauthorscopusEN} %Env of bibliography
+{\setcounter{citeauthorscopusEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
+{\stepcounter{citeauthorscopusEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorscopusEN}{}
+
+\newtotcounter{citeauthorpatentEN}
+\makeatletter
+\defbibenvironment{countauthorpatentEN} %Env of bibliography
+{\setcounter{citeauthorpatentEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
+{\stepcounter{citeauthorpatentEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorpatentEN}{}
+
+\newtotcounter{citeauthorprogramsEN}
+\makeatletter
+\defbibenvironment{countauthorprogramsEN} %Env of bibliography
+{\setcounter{citeauthorprogramsEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorENconf в нашей реализации
+{\stepcounter{citeauthorprogramsEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorprogramsEN}{}
+
+\newtotcounter{citeauthorEN}
+\makeatletter
+\defbibenvironment{countauthorEN} %Env of bibliography
+{\setcounter{citeauthorEN}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorEN в нашей реализации
+{\stepcounter{citeauthorEN}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorEN}{}
+
+
+\defbibheading{authorpublicationsEN}[\authorbibtitleEN]{\section*{#1}}
+\defbibheading{pubsubgroupEN}{\noindent\textbf{#1}}
+\defbibheading{otherpublicationsEN}{\section*{#1}}
+
+
+%%% Создание команд для вывода списка литературы %%%
+\newcommand*{\insertbibliofullEN}{
+    \printbibliography[keyword=bibliofullEN,section=0,title=\fullbibtitleEN]
+    \printbibliography[heading=counterEN,env=counterEN,keyword=bibliofullEN,section=0]
+}
+
+\newcommand*{\insertbiblioauthorcitedEN}{
+    \printbibliography[heading=authorpublicationsEN,keyword=biblioauthorEN,section=0,title=\authorbibtitleEN]
+}
+\newcommand*{\insertbiblioauthorEN}{
+    \printbibliography[heading=authorpublicationsEN,keyword=biblioauthorEN,section=3,title=\authorbibtitleEN]
+}
+\newcommand*{\insertbiblioauthorimportantEN}{
+    \printbibliography[heading=authorpublicationsEN,keyword=biblioauthorEN,section=4,title={The most significant \MakeLowercase{\protect\authorbibtitleEN{}}}]
+}
+
+
+\newcommand*{\insertbiblioauthorgroupedEN}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
+    \section*{\authorbibtitleEN}
+    \printbibliography[heading=pubsubgroupEN, keyword=biblioauthorscopusEN, section=3,title=\scopusbibtitleEN]%
+    \printbibliography[heading=pubsubgroupEN, keyword=biblioauthorvakEN, section=3,title=\vakbibtitleEN]%
+    \printbibliography[heading=pubsubgroupEN, keyword=biblioauthorpatentEN, section=3,title=\patentbibtitleEN]%
+    \printbibliography[heading=pubsubgroupEN, keyword=biblioauthornotvakEN, section=3,title=\notvakbibtitleEN]%
+    \printbibliography[heading=pubsubgroupEN, keyword=biblioauthorprogramsEN, section=3,title=\programsbibtitleEN]%
+}
+
+
+\newcommand*{\insertbibliootherEN}{
+    \printbibliography[heading=otherpublicationsEN,keyword=bibliootherEN]
+}

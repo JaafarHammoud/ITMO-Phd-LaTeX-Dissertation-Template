@@ -1,0 +1,111 @@
+\thispagestyle{empty}
+
+\begin{center}%
+    \textbf{\Large Synopsis}
+\end{center}%
+
+\vspace{0.008\paperheight plus0.2fill}
+
+\noindent The research was carried out at {\thesisInOrganizationEN}.
+
+\vspace{0.008\paperheight plus1fill}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+    Scientific adviser:   & \supervisorRegaliaEN\par
+    \textbf{\supervisorFioEN}
+    \vspace{0.013\paperheight}\\
+    Official opponents:  &
+        \textbf{\opponentOneFioEN,}\par
+        \opponentOneRegaliaEN,\par
+        \opponentOneJobPlaceEN,\par
+        \opponentOneJobPostEN\par
+        \vspace{0.01\paperheight}
+        \textbf{\opponentTwoFioEN}, \par
+        \opponentTwoRegaliaEN,\par
+        \opponentTwoJobPlaceEN,\par
+        \opponentTwoJobPostEN
+\end{tabularx}
+\vspace{0.008\paperheight plus1fill}
+
+
+\noindent The defense will be held on \defenseDateEN~at the meeting of the ITMO University Dissertation Council \defenseCouncilNumberEN~at \defenseCouncilAddressEN.
+
+
+\vspace{0.008\paperheight plus0.1fill}
+
+\noindent The thesis is available in the Library of Saint Petersburg National Research University of Information Technologies, Mechanics and Optics, 49 Kronversky pr., Saint Petersburg, Russia and on fppo.ifmo.ru website.
+
+\vspace{0.008\paperheight plus1fill}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}%
+        >{\raggedright\arraybackslash}b{12em}@{}
+        >{\centering\arraybackslash}X
+        r
+        @{}}
+    Science Secretary of the\par
+    ITMO University\par
+    Dissertation Council \defenseCouncilNumberEN,\par
+    \defenseSecretaryRegaliaEN
+    &
+    \IfFileExists{images/secretary-signature.png}{\includegraphics[width=2cm]{secretary-signature.png}}
+    &
+    \defenseSecretaryFioEN
+\end{tabularx} 
+
+\newpage
+
+\section*{Thesis overview}
+
+\newcommand{\actualityEN}{\underline{\textbf{\actualityTXTEN}}}
+\newcommand{\progressEN}{\underline{\textbf{\progressTXTEN}}}
+\newcommand{\aimEN}{\underline{{\textbf\aimTXTEN}}}
+\newcommand{\tasksEN}{\underline{\textbf{\tasksTXTEN}}}
+\newcommand{\noveltyEN}{\underline{\textbf{\noveltyTXTEN}}}
+\newcommand{\influenceEN}{\underline{\textbf{\influenceTXTEN}}}
+\newcommand{\influenceTheorEN}{\underline{\textbf{\influenceTheorTXTEN}}}
+\newcommand{\methodsEN}{\underline{\textbf{\methodsTXTEN}}}
+\newcommand{\defpositionsEN}{\underline{\textbf{\defpositionsTXTEN}}}
+\newcommand{\reliabilityEN}{\underline{\textbf{\reliabilityTXTEN}}}
+\newcommand{\probationEN}{\underline{\textbf{\probationTXTEN}}}
+\newcommand{\contributionEN}{\underline{\textbf{\contributionTXTEN}}}
+\newcommand{\publicationsEN}{\underline{\textbf{\publicationsTXTEN}}}
+\newcommand{\researchObjectEN}{\underline{\textbf{\researchObjectTXTEN}}}
+\newcommand{\researchSubjectEN}{\underline{\textbf{\researchSubjectTXTEN}}}
+\newcommand{\deploymentEN}{\underline{\textbf{\deploymentTXTEN}}}
+\newcommand{\thesisstructureEN}{\underline{\textbf{\thesisstructureTXTEN}}}
+
+\input{common/characteristic_en} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
+
+%Диссертационная работа была выполнена при поддержке грантов ...
+
+%\underline{\textbf{Объем и структура работы.}} Диссертация состоит из~введения,
+%четырех глав, заключения и~приложения. Полный объем диссертации
+%\textbf{ХХХ}~страниц текста с~\textbf{ХХ}~рисунками и~5~таблицами. Список
+%литературы содержит \textbf{ХХX}~наименование.
+
+\section*{Thesis contents}
+Contents, in English.
+
+\textbf{Conclusion}.
+
+\input{common/concl_en}
+
+
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
+\ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
+  \renewcommand{\bibname}{\large \authorbibtitleEN}
+  \nocite{*}
+  \insertbiblioauthorgroupedEN           % Подключаем Bib-базы
+  %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
+}{% Реализация пакетом biblatex через движок biber
+  \ifnumgreater{\value{usefootcite}}{0}{
+%  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
+  \insertbiblioauthorcitedEN      % Вывод процитированных в автореферате работ автора
+  }{
+  \insertbiblioauthorgroupedEN           % Вывод всех работ автора
+%  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+%  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
+  %\insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  }
+}
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}

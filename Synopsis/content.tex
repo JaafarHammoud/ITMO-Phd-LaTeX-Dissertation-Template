@@ -1,3 +1,58 @@
+\thispagestyle{empty}
+
+\begin{center}%
+    \textbf{\Large Реферат}
+\end{center}%
+
+\vspace{0.008\paperheight plus0.2fill}
+
+\noindent Работа выполнена в {\thesisInOrganization}.
+
+\vspace{0.008\paperheight plus1fill}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+    Научный руководитель:   & \supervisorRegalia\par
+    \textbf{\supervisorFio}
+    \vspace{0.013\paperheight}\\
+    Официальные оппоненты:  &
+        \textbf{\opponentOneFio,}\par
+        \opponentOneRegalia,\par
+        \opponentOneJobPlace,\par
+        \opponentOneJobPost\par
+        \vspace{0.01\paperheight}
+        \textbf{\opponentTwoFio}, \par
+        \opponentTwoRegalia,\par
+        \opponentTwoJobPlace,\par
+        \opponentTwoJobPost
+\end{tabularx}
+\vspace{0.008\paperheight plus1fill}
+
+
+\noindent Защита состоится \defenseDate~на~заседании диссертационного совета Университета~ИТМО \defenseCouncilNumber~по адресу: \defenseCouncilAddress.
+
+\vspace{0.008\paperheight plus0.1fill}
+
+\noindent С диссертацией можно ознакомиться в библиотеке Санкт-Петербургского национального исследовательского университета информационных технологий, механики и оптики по адресу: 197101, Санкт-Петербург, Кронверкский пр., д.49 и на сайте fppo.ifmo.ru.
+
+\vspace{0.008\paperheight plus1fill}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}%
+        >{\raggedright\arraybackslash}b{12em}@{}
+        >{\centering\arraybackslash}X
+        r
+        @{}}
+    Ученый секретарь\par
+    диссертационного совета\par
+    Университета ИТМО\par
+    \defenseCouncilNumber,\par
+    \defenseSecretaryRegalia
+    &
+    \IfFileExists{images/secretary-signature.png}{\includegraphics[width=2cm]{secretary-signature.png}}
+    &
+    \defenseSecretaryFio
+\end{tabularx} 
+
+\newpage
 
 \section*{Общая характеристика работы}
 
@@ -7,12 +62,17 @@
 \newcommand{\tasks}{\underline{\textbf{\tasksTXT}}}
 \newcommand{\novelty}{\underline{\textbf{\noveltyTXT}}}
 \newcommand{\influence}{\underline{\textbf{\influenceTXT}}}
+\newcommand{\influenceTheor}{\underline{\textbf{\influenceTheorTXT}}}
 \newcommand{\methods}{\underline{\textbf{\methodsTXT}}}
 \newcommand{\defpositions}{\underline{\textbf{\defpositionsTXT}}}
 \newcommand{\reliability}{\underline{\textbf{\reliabilityTXT}}}
 \newcommand{\probation}{\underline{\textbf{\probationTXT}}}
 \newcommand{\contribution}{\underline{\textbf{\contributionTXT}}}
 \newcommand{\publications}{\underline{\textbf{\publicationsTXT}}}
+\newcommand{\researchObject}{\underline{\textbf{\researchObjectTXT}}}
+\newcommand{\researchSubject}{\underline{\textbf{\researchSubjectTXT}}}
+\newcommand{\deployment}{\underline{\textbf{\deploymentTXT}}}
+\newcommand{\thesisstructure}{\underline{\textbf{\thesisstructureTXT}}}
 
 \input{common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
 
@@ -40,7 +100,7 @@
   \centering
   \includegraphics [scale=0.27] {latex}
   \caption{Подпись к картинке.} 
-  \label{img:latex}
+  \label{syn:img:latex}
 \end{figure}
 
 Формулы в строку без номера добавляются так:
@@ -57,9 +117,7 @@
 \verb!Synopsis/setup.tex! необходимо присвоить положительное значение
 счётчику \verb!\setcounter{usefootcite}{1}!. В таком случае ссылки на
 работы других авторов будут подстрочными.
-\ifnumgreater{\value{usefootcite}}{0}{
-Изложенные в третьей главе результаты опубликованы в~\cite{vakbib1, vakbib2}.
-}{}
+Изложенные в третьей главе результаты опубликованы в~\cite{authorpapervak_1, authorpaperscopus_1}.
 Использование подстрочных ссылок внутри таблиц может вызывать проблемы.
 
 В \underline{\textbf{четвертой главе}} приведено описание 
@@ -71,21 +129,22 @@
 диссертации формируется в разделе <<\publications>>\ файла
 \verb!../common/characteristic.tex!  при помощи команды \verb!\nocite!
 
+
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
 \ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
   \renewcommand{\bibname}{\large \authorbibtitle}
   \nocite{*}
-  \insertbiblioauthor           % Подключаем Bib-базы
+  \insertbiblioauthorgrouped           % Подключаем Bib-базы
   %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
   \ifnumgreater{\value{usefootcite}}{0}{
 %  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
   \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
   }{
-  \insertbiblioauthor           % Вывод всех работ автора
+  \insertbiblioauthorgrouped           % Вывод всех работ автора
 %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
 %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  %\insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
   }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
